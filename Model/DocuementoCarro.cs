@@ -9,12 +9,18 @@ namespace Model
     
     public class DocumentoCarro
     {
-        private Guid id;
-        private Car carro;
+        private Guid Id;
+        private Car Carro;
+        public PersonModel Proprietario { get; private set; }
         public DocumentoCarro(Guid id, Car carro)
         {
-            this.id = id;
-            this.carro = carro;
+            this.Id = id;
+            this.Carro = carro;
+        }
+
+        public void SetProprietario(PersonModel proprietario)
+        {
+            this.Proprietario = proprietario;
         }
     }
 }

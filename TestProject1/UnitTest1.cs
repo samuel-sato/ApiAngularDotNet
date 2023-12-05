@@ -4,10 +4,21 @@ namespace TestProject1
     public class Tests
     {
         CarService carService;
+        PersonModel person;
+        Car carro;
+
         [SetUp]
         public void Setup()
         {
             carService = new CarService();
+            person = new PersonModel {
+                Id = Guid.NewGuid(),
+                Active = true,
+                Age = 18,
+                Email = "emailTeste@gmail.com",
+                Name = "Pessoa 1"
+            };
+            carro = new Car(new Guid(), 2022, "Gol", "CBA9E56");
         }
 
         [Test]
@@ -20,9 +31,16 @@ namespace TestProject1
         [Test]
         public void CriarDocumentoCarro()
         {
-            Car c1 = new Car(new Guid(), 2018, "Ford Ka", "ABC2E56");
-            DocumentoCarro documentoCarro = new DocumentoCarro(new Guid(), c1);
+            DocumentoCarro documentoCarro = new DocumentoCarro(new Guid(), carro);
             Assert.IsNotNull(documentoCarro);
-        }     
+        }
+
+        [Test]
+        public void AdicionarPropretarioCarroAoDocumento()
+        {
+            DocumentoCarro documentoCarro = new DocumentoCarro(new Guid(), carro);
+            documentoCarro.SetProprietario(person);
+            Assert.That(documentoCarro.Proprietario.Id,Is.EqualTo(person.Id));
+        }
     }
 }
