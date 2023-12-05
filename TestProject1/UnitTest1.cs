@@ -53,8 +53,21 @@ namespace TestProject1
 
             PersonModel p1 = new PersonModel { Id = new Guid(), Name = "P1" };
 
+            Assert.IsTrue(documentoSerivce.DarPermissaoVisualizacao(documentoCarro, person, p1));
+        }
+
+        [Test]
+        public void VerificaSeTemPermissaoVisualizacao()
+        {
+            DocumentoCarro documentoCarro = new DocumentoCarro(new Guid(), carro);
+            documentoCarro.SetProprietario(person);
+
+            DocumentoSerivce documentoSerivce = new DocumentoSerivce();
+
+            PersonModel p1 = new PersonModel { Id = new Guid(), Name = "P1" };
+
             documentoSerivce.DarPermissaoVisualizacao(documentoCarro, person, p1);
-            Assert.IsTrue(documentoSerivce.PossuiPermissaoVisualizar(documentoCarro, p1));
+            Assert.True(documentoSerivce.PossuiPermissaoVisualizar(documentoCarro, p1));
         }
     }
 }

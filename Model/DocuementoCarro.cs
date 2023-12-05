@@ -9,7 +9,7 @@ namespace Model
     
     public class DocumentoCarro
     {
-        private Guid Id;
+        public Guid Id { get; private set; }
         private Car Carro;
         public PersonModel Proprietario { get; private set; }
         public DocumentoCarro(Guid id, Car carro)
