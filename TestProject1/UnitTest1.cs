@@ -42,5 +42,19 @@ namespace TestProject1
             documentoCarro.SetProprietario(person);
             Assert.That(documentoCarro.Proprietario.Id,Is.EqualTo(person.Id));
         }
+
+        [Test]
+        public void DarPermissaoVisualizacaoDoDocumento()
+        {
+            DocumentoCarro documentoCarro = new DocumentoCarro(new Guid(), carro);
+            documentoCarro.SetProprietario(person);
+
+            DocumentoSerivce documentoSerivce = new DocumentoSerivce();
+
+            PersonModel p1 = new PersonModel { Id = new Guid(), Name = "P1" };
+
+            documentoSerivce.DarPermissaoVisualizacao(documentoCarro, person, p1);
+            Assert.IsTrue(documentoSerivce.PossuiPermissaoVisualizar(documentoCarro, p1));
+        }
     }
 }
